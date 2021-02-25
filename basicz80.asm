@@ -23,8 +23,8 @@ startrun:
 nextdoor:
     	add hl,de		;increment to next door
     	ld a,l			;check we have a legal door position			
-    	cp 100			;check if past end
-    	jr c,nextrun		;gone off end
+    	cp 100			;check if past last door
+    	jr c,nextrun		;bigger than 100 so gone off end
     
     	ld a,c			;load mask
     	xor (hl)		;toggle door
