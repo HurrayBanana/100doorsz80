@@ -1,4 +1,5 @@
 ;100 doors algorithmin z80 assembly language
+;created by hurray banana Feb 2021
 ;0 is door closed 1 is door open
 ;tab size=8
 
