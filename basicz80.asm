@@ -1,27 +1,24 @@
 ;100 doors algorithmin z80 assembly language
 ;created by hurray banana Feb 2021
-;0 is door closed 1 is door open
+;0 is door closed $ff is door open
 ;tab size=8
 
 
 initialise:
 	xor a			;clear a register
-    	ld hl,doors		;point hl at addr of 2nd element of doors array
+    	ld hl,doors		;point hl at addr of 1st element of doors array
     	ld (hl),a		;clear byte 
-    	ld de,doors+1		;point de at addr of first element of doors array
+    	ld de,doors+1		;point de at addr of 2nd element of doors array
     	ld bc,100		;counter for ldir
 	ldir			;copy value at addr in hl to addr in de, then inc both hl and de
     				;decrement bc at repeat until bc = 0
 
-	ld a,$dc	;blank overflow
-	ld (de),a
 	ld hl,doors		;point hl at addr of 2nd element of doors array
     	ld (hl),a		;and wasted door
 
-
     	ld de,1			;step value (initially 1)
 	ld c,1			;set Toggle mask
-    	dec a			;set a to $ff (it was 0 before)
+    	dec a			;set a to $ff (255, it was 0 before)
     
 startrun:
     	ld hl,doors		;load start of doors array (we ignore 1st byte)
