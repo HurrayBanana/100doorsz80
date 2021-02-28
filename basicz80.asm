@@ -6,13 +6,19 @@
 
 initialise:
 	xor a			;clear a register
-    	ld hl,doors+1		;point hl at addr of 2nd element of doors array
+    	ld hl,doors		;point hl at addr of 2nd element of doors array
     	ld (hl),a		;clear byte 
-    	ld de,doors		;point de at addr of first element of doors array
-    	ld bc,101		;counter for ldir
+    	ld de,doors+1		;point de at addr of first element of doors array
+    	ld bc,100		;counter for ldir
 	ldir			;copy value at addr in hl to addr in de, then inc both hl and de
     				;decrement bc at repeat until bc = 0
-    
+
+	ld a,$dc	;blank overflow
+	ld (de),a
+	ld hl,doors		;point hl at addr of 2nd element of doors array
+    	ld (hl),a		;and wasted door
+
+
     	ld de,1			;step value (initially 1)
 	ld c,1			;set Toggle mask
     	dec a			;set a to $ff (it was 0 before)
@@ -22,8 +28,8 @@ startrun:
     
 nextdoor:
     	add hl,de		;increment to next door
-    	ld a,l			;check we have a legal door position			
-    	cp 100			;check if past last door
+	ld a,100
+    	sub l			;check we have a legal door position			
     	jr c,nextrun		;bigger than 100 so gone off end
     
     	ld a,c			;load mask
@@ -40,5 +46,5 @@ nextrun:
     	jr nz,startrun		;if not zero (not 101) go again from start
 
     	halt			;wait for interrupt
-    
+
 doors:	.ds 101			;declare space for 101 bytes
