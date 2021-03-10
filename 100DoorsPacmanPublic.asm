@@ -1516,8 +1516,8 @@ doors_100_copy_hex: defm "X64 DOORS",0
 developed_by_copy: defm "DEVELOPED AND DESIGNED BY",0
 hurray_banana_copy: defm "HURRAY BANANA",0
 date_and_year_copy: defm "MARCH 2021",0
-start1_instruction: defm "LEFT INC DELAY",0
-start2_instruction: defm "RIGHT DEC DELAY",0
+start1_instruction: defm "LEFT DEC DELAY",0
+start2_instruction: defm "RIGHT INC DELAY",0
 start3_instruction: defm "DOWN ADVANCE IF DELAY 0",0
 start4_instruction: defm "UP TOGGLE HEX DENARY",0
 
